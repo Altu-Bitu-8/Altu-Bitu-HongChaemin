@@ -3,48 +3,50 @@
 
 using namespace std;
 
+bool checkBracket(const string& input) { // 문자열이 균형을 이루면 true, 아니면 false
+    stack<char> bracket; 
+        
+    for (char c : input) {
+        if (c == '(' || c == '[') {
+            bracket.push(c);
+        }
+        else if (c == ')') {
+            if (!bracket.empty() && bracket.top() == '(') {
+                bracket.pop();
+            }
+            else {
+                return false;
+            }
+        }
+        else if (c == ']') {
+            if (!bracket.empty() && bracket.top() == '[') {
+                bracket.pop();
+            }
+            else {
+                return false;
+            }
+        }
+    }
+    return bracket.empty();
+}
+
 int main()
 {
     string input;
     
-    getline(cin, input);
-    
-    while (input != ".") { 
-        stack<char> bracket; 
-        bool result = true;
-        
-        for (char c : input) {
-            if (c == '(' || c == '[') {
-                bracket.push(c);
-            }
-            else if (c == ')') {
-                if (!bracket.empty() && bracket.top() == '(') {
-                    bracket.pop();
-                }
-                else {
-                    result = false;
-                    break;
-                }
-            }
-            else if (c == ']') {
-                if (!bracket.empty() && bracket.top() == '[') {
-                    bracket.pop();
-                }
-                else {
-                    result = false;
-                    break;
-                }
-            }
+    while (true) { 
+        getline(cin, input);
+
+        if (input == ".") {
+            break;
         }
         
-        if (bracket.empty() && result) {
+        if (checkBracket(input)) {
             cout << "yes\n"; 
         } 
         else {
             cout << "no\n"; 
         }
-        
-        getline(cin, input);
     }
     
     return 0;
