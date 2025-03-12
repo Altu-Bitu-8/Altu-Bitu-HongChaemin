@@ -14,15 +14,13 @@ int main()
         swap(a, b);
     }
     
-    int lenA = a.length();
-    int lenB = b.length();
+    int len_a = a.length();
+    int len_b = b.length();
     
     // 자리수 맞춰주기
     string padding = "";
-    if (lenA != lenB) {
-        for (int i=0; i<(lenA-lenB); i++) {
+    for (int i=0; i<(len_a-len_b); i++) {
             padding += "0";
-        }
     }
     b = padding + b;
     
@@ -30,7 +28,7 @@ int main()
     string result = "";
     int carry = 0;
     int sum;
-    for (int i = lenA-1; i>=0; i--) {
+    for (int i = len_a-1; i>=0; i--) {
         sum = (a[i] - '0') + (b[i] - '0') + carry;
         carry = sum / 10;
         
@@ -42,7 +40,7 @@ int main()
     }
     
     reverse(result.begin(), result.end());
-    cout << result << endl;
+    cout << result << '\n';
     
     return 0;
 }
