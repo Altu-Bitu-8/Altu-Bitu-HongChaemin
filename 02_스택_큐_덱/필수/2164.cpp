@@ -5,12 +5,12 @@ using namespace std;
 
 int main()
 {
-    int N; 
-    cin >> N;
+    int n; 
+    cin >> n;
     
     queue<int> card; 
     
-    for(int i=0; i<N; i++) {
+    for(int i=0; i<n; i++) {
         card.push(i+1);
     }
     
@@ -19,7 +19,7 @@ int main()
         card.push(card.front());
         card.pop();
     }
-    cout << card.front() << endl;
+    cout << card.front() << '\n';
     
     return 0;
 }
